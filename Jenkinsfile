@@ -15,4 +15,11 @@ pipeline {
       }
     }
   }
+  post {
+            failure {
+                     mail to: 'daher@dtp.ae',
+                     subject: "Pipeline has failed: ${currentBuild.fullDisplayName}",
+                     body: "Error in ${env.BUILD_URL}"
+  }
+}
 }

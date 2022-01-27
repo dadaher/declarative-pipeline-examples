@@ -11,6 +11,14 @@ pipeline {
             }
       }
     }
+    stage('builds succe') {
+      steps {
+        script {
+          code = load ('example.groovy')      
+          code.getSuccessfulBuild()
+            }
+      }
+    }
   }
   post {
             failure {

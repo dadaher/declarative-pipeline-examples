@@ -78,7 +78,7 @@ pipeline {
                                         script: [
                                             classpath: [], 
                                             sandbox: false, 
-                                            script: "example.getSuccessfulBuild()"
+                                            script: example.getSuccessfulBuild()
                                                 
                                         ]
                                     ]

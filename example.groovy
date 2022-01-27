@@ -7,8 +7,8 @@ def example2() {
 }
 def getSuccessfulBuild() {
 def builds = []
-def JOB-NAME = "test"
-def job = jenkins.model.Jenkins.instance.getItem(JOB-NAME)
+def JOBNAME = "test"
+def job = jenkins.model.Jenkins.instance.getItem(JOBNAME)
 job.builds.each {
     if (it.result == hudson.model.Result.SUCCESS) {
         builds.add(it.displayName[1..-1])

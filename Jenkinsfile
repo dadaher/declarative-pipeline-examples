@@ -8,8 +8,11 @@ pipeline {
       }
     }
     stage('Execute') {
-    code.example1()
+      steps {
+        script {
+                code = load "example.groovy"
+            }
+      }
     }
-
   }
 }

@@ -57,7 +57,28 @@ pipeline {
 
                                                 println builds
                                                 return builds
-                                                '''
+                                                '''              
+                                        ]
+                                    ]
+                                ],
+                                [$class: 'ChoiceParameter', 
+                                    choiceType: 'PT_SINGLE_SELECT', 
+                                    description: 'Select the build version', 
+                                    filterLength: 1, 
+                                    filterable: false, 
+                                    name: 'Version2', 
+                                    script: [
+                                        $class: 'GroovyScript', 
+                                        fallbackScript: [
+                                            classpath: [], 
+                                            sandbox: true, 
+                                            script: 
+                                                "return['Could not get The environemnts']"
+                                        ], 
+                                        script: [
+                                            classpath: [], 
+                                            sandbox: false, 
+                                            script: "example.getSuccessfulBuild()"
                                                 
                                         ]
                                     ]

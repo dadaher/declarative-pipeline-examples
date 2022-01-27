@@ -79,8 +79,8 @@ pipeline {
                                             classpath: [], 
                                             sandbox: false, 
                                             script: '''
-                                            def code = load ('example.groovy')      
-                                            code.getSuccessfulBuild()
+                                            def code = load getBuildVersion.groovy      
+                                            return code
                                             '''
                                                 
                                         ]

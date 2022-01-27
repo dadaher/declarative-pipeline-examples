@@ -45,8 +45,8 @@ pipeline {
                                         script: [
                                             classpath: [], 
                                             sandbox: false, 
-                                            script: 
-                                                "def builds = []
+                                            script: ''' 
+                                                def builds = []
                                                 def JOBNAME = 'test'
                                                 def job = jenkins.model.Jenkins.instance.getItem(JOBNAME)
                                                 job.builds.each {
@@ -56,7 +56,8 @@ pipeline {
                                                 }
 
                                                 println builds
-                                                return builds"
+                                                return builds
+                                                '''
                                                 
                                         ]
                                     ]

@@ -2,11 +2,7 @@ def code;
 pipeline {
   agent any
   stages {
-    stage('test') {
-      steps {
-        code = load 'example.groovy'
-      }
-    }
+    
     stage('Execute') {
       steps {
         script {

@@ -80,7 +80,8 @@ pipeline {
                                             sandbox: false, 
                                             script: '''
                                             def code = load getBuildVersion.groovy      
-                                            return code
+                                            
+                                            return code.getSuccessfulBuild()
                                             '''
                                                 
                                         ]

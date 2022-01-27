@@ -1,5 +1,5 @@
+def code;
 pipeline {
-  def code
   agent any
   stages {
     stage('test') {
@@ -10,7 +10,8 @@ pipeline {
     stage('Execute') {
       steps {
         script {
-                code = load "example.groovy"
+          code = load ('example.groovy')      
+          code.example1()
             }
       }
     }

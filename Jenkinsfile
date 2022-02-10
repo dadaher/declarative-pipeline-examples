@@ -1,36 +1,43 @@
 pipeline {
     agent any
-    stages {
-        stage('Setup parameters') {
-            steps {
-                script { 
-                    properties([
-                        parameters([
-                            choice(
-                                choices: ['ONE', 'TWO'], 
-                                name: 'PARAMETER_01'
-                            ),
-                            booleanParam(
-                                defaultValue: true, 
-                                description: '', 
-                                name: 'BOOLEAN'
-                            ),
-                            text(
-                                defaultValue: '''
-                                this is a multi-line 
-                                string parameter example
-                                ''', 
-                                 name: 'MULTI-LINE-STRING'
-                            ),
-                            string(
-                                defaultValue: 'scriptcrunch', 
-                                name: 'STRING-PARAMETER', 
-                                trim: true
-                            )
-                        ])
-                    ])
-                }
+   
+    parameters {
+        choice(choices:['Hello','Bye'], description: 'Users Choice', name: 'CHOICE')
+    }
+   
+   stages {
+        stage('Init') {
+            steps('Log-in') {
+                echo 'Log-in'
             }
         }
-    }   
+        
+        stage('Manual Step') {
+            steps('Input') {
+                echo "choice: ${CHOICE}"
+                echo "choice params.: " + params.CHOICE
+                echo "choice env: " + env.CHOICE
+            }
+        }
+        
+        stage('Hello') {
+            when { 
+                expression { env.CHOICE == 'Hello' }
+            }   
+            
+            steps('Execute')    {
+                echo 'Say Hello'
+            } 
+        }       
+        
+        stage('Bye') {
+            when {
+                expression {env.CHOICE == 'Bye'}
+            }
+            
+            steps('Execute'){
+                echo 'Say Bye'    
+            }
+        }
+    }
 }

@@ -2,7 +2,7 @@ pipeline {
     agent any
    
     parameters {
-        choice(choices:['Hello':default,'Bye','H'], description: 'Users Choice', name: 'CHOICE')
+        choice(choices:['Hello','Bye','H'], description: 'Users Choice', name: 'CHOICE')
     }
    
    stages {

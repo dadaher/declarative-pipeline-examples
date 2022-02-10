@@ -2,7 +2,7 @@ pipeline {
     agent any;
     stages {
         stage('build') {
-            when { branch 'parallel_cond_stages' }
+            when { branch 'master' }
             stages {
                 stage('compile') {
                     steps {

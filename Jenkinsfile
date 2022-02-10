@@ -2,7 +2,7 @@ pipeline {
     agent any
    
     parameters {
-        choice(choices:['Hello','Bye'], description: 'Users Choice', name: 'CHOICE')
+        choice(choices:['Hello':default,'Bye','H'], description: 'Users Choice', name: 'CHOICE')
     }
    
    stages {
@@ -22,7 +22,7 @@ pipeline {
         
         stage('Hello') {
             when { 
-                expression { env.CHOICE == 'Hello' }
+                expression { env.CHOICE == 'Hello' || env.CHOICE == 'H' }
             }   
             
             steps('Execute')    {

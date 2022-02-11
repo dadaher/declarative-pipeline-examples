@@ -6,6 +6,28 @@ pipeline {
                     script {
                     properties([
                             parameters([
+                                  [$class: 'ChoiceParameter', 
+                                      choiceType: 'PT_SINGLE_SELECT', 
+                                      description: 'Select a scenario from the List', 
+                                      filterLength: 1, 
+                                      filterable: false, 
+                                      name: 'SCENARIO', 
+                                      script: [
+                                          $class: 'GroovyScript', 
+                                          fallbackScript: [
+                                              classpath: [], 
+                                              sandbox: false, 
+                                              script: 
+                                                  "return['Could not get a scenario']"
+                                          ], 
+                                          script: [
+                                              classpath: [], 
+                                              sandbox: true, 
+                                              script: 
+                                                  "return['BUILD_NEW_BACKEND','BUILD_NEW_BACKEND_WITH_GRAMMAR','DEPLOY_USING_PREV_VERSIONS','BUILD_AND_DEPLOY_NEW_BACKEND','BUILD_AND_DEPLOY_NEW_BACKEND_WITH_GRAMMAR', 'UPDATE_PIPELINE']"
+                                          ]
+                                      ]
+                                  ],                                
                                 [$class: 'ChoiceParameter', 
                                     choiceType: 'PT_SINGLE_SELECT', 
                                     description: 'Select the Environemnt from the Dropdown List', 
@@ -144,5 +166,18 @@ pipeline {
                     }
                 }
             }
+  stage('2.7.2-Build BackEnd without Grammar') {
+  when {
+    expression {
+      env.SCENARIO.matches("BUILD_NEW_BACKEND(.*)")
+    }
+  }
+  steps {
+    script {
+      currentBuild.displayName = "BUILD_NEW_BACKEND"
+    }
+
+  }
+}
         }   
 }

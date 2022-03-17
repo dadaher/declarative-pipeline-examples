@@ -1,45 +1,28 @@
 pipeline {
-    agent any
-
-    environment {
-        FOO = "initial FOO env value"
-    }
-
+    agent { label 'master' }
     stages {
-        stage("Stage 1") {
+        stage('first') {
             steps {
                 script {
-                    echo "FOO is '${FOO}'" // prints: FOO is 'initial FOO env value'
-
-                    env.BAR = "bar"
+                    last_started = env.STAGE_NAME
+                    echo "in first"
+                    def a = 0
+                    def b = 10 / a
                 }
             }
         }
-
-        stage("Stage 2") {
+        stage('second') {
             steps {
-                echo "env.BAR is '${BAR}'" // prints: env.BAR is 'bar'
-                echo "FOO is '${FOO}'" // prints: FOO is 'initial FOO env value'
-                echo "env.FOO is '${env.FOO}'" // prints: env.FOO is 'initial FOO env value'
                 script {
-                    FOO = "test2"
-                    env.BAR = "bar2"
+                    last_started = env.STAGE_NAME
+                    echo "in second"
                 }
             }
         }
-
-        stage("Stage 3") {
-            steps {
-                echo "FOO is '${FOO}'" // prints: FOO is 'test2'
-                echo "env.FOO is '${env.FOO}'" // prints: env.FOO is 'initial FOO env value'
-                echo "env.BAR is '${BAR}'" // prints: env.BAR is 'bar2'
-
-                script {
-                    FOO = "test3"
-                }
-
-                echo "FOO is '${FOO}'" // prints: FOO is 'test3'
-            }
+    }
+    post {
+        failure {
+            echo "last_started: $last_started"
         }
     }
 }

@@ -7,6 +7,10 @@ pipeline {
             steps {
                 // Your build steps here
                 echo 'Building...'
+                sh '''
+                echo $env.BRANCH_NAME  
+                echo $env.TAG_NAME
+                '''
                 // Example build command
                 // sh 'make build'
             }

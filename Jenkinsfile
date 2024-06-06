@@ -30,6 +30,11 @@ pipeline {
                 script {
                     // Create a tag using Git
                     // Replace 'v1.0.0' with your desired tag name
+                    sh 'git reset --hard'
+                    sh 'git clean -dfx'
+                    sh 'git config remote.origin.url git@github.com:dadaher/declarative-pipeline-examples.git'
+                    sh 'git branch -l'
+                    sh 'git fetch'
                     sh 'git tag -a v1.0.0 -m "Release v1.0.0"'
                     // Push the tag to the remote repository
                     sh 'git push origin v1.0.0'

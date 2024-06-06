@@ -38,6 +38,7 @@ pipeline {
                     sh 'git tag -a ex-v1.0.0 -m "ex Release v1.0.0"'
                     // Push the tag to the remote repository
                     sh 'git push origin ex-v1.0.0'
+                    githubNotify description: 'This is a shorted example',  status: 'SUCCESS'
                 }
             }
         }

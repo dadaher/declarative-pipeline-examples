@@ -7,7 +7,9 @@ pipeline {
             steps {
                 // Your build steps here
                 echo 'Building...'
+                sh 'printenv'
                 sh '''
+                
                 echo $env.BRANCH_NAME  
                 echo $env.TAG_NAME
                 '''

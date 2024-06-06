@@ -23,7 +23,7 @@ pipeline {
                 expression {
                     // Conditionally run the tagging step based on your criteria
                     // For example, only tag on the master branch
-                    return (env.BRANCH_NAME == 'master')
+                    return (env.GIT_BRANCH == 'origin/master')
                 }
             }
             steps {
@@ -41,7 +41,7 @@ pipeline {
             when {
                 expression {
                     // Check if the current branch is master and if there is a tag available
-                    return (env.BRANCH_NAME == 'master' && env.TAG_NAME!= null)
+                    return (env.GIT_BRANCH == 'origin/master' && env.TAG_NAME!= null)
                 }
             }
             steps {

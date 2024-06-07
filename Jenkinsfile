@@ -10,8 +10,8 @@ pipeline {
                 sh 'printenv'
                 sh '''
                 
-                //echo $env.BRANCH_NAME  
-                //echo $env.TAG_NAME
+                #echo $env.BRANCH_NAME  
+                #echo $env.TAG_NAME
                 '''
                 // Example build command
                 // sh 'make build'

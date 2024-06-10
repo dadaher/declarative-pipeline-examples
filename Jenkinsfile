@@ -64,10 +64,14 @@ pipeline {
             steps {
                 script {
                     // Example deployment command, replace with your actual deployment commands
-                    sh 'echo Deploying version ${env.TAG_NAME}'
+                    sh 'echo Deploying version ${env.TAG_NAME} "${GENERATED_VERSION_NUMBER}" '
                     // sh 'your-deployment-command-here'
                 }
             }
         }
     }
+environment {
+GENERATED_VERSION_NUMBER = VersionNumber( projectStartDate: '2024-06-10', versionNumberString: 'Test-Github_Checks_Plugin-${BUILD_DATE_FORMATTED, "yyyy-MM-dd"}-${BUILDS_ALL_TIME}', versionPrefix: "Test-", worstResultForIncrement: 'SUCCESS' )
+IMAGES_VERSION_NUMBER = VersionNumber( projectStartDate: '2024-06-10', versionNumberString: '${BUILD_DATE_FORMATTED, "yyyy-MM-dd"}-${BUILDS_ALL_TIME}', versionPrefix: "Test-", worstResultForIncrement: 'SUCCESS' )
+}    
 }

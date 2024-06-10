@@ -35,9 +35,9 @@ pipeline {
                     sh 'git config remote.origin.url git@github.com:dadaher/declarative-pipeline-examples.git'
                     sh 'git branch -l'
                     sh 'git fetch'
-                    sh 'git tag -a ex-${BUILDS_ALL_TIME} -m "ex Release ${BUILDS_ALL_TIME}"'
+                    sh 'git tag -a ex-"${IMAGES_VERSION_NUMBER}" -m "ex Release ${IMAGES_VERSION_NUMBER}"'
                     // Push the tag to the remote repository
-                     sh 'git push origin ex-${BUILDS_ALL_TIME}'
+                     sh 'git push origin ex-${IMAGES_VERSION_NUMBER}'
                     githubNotify description: 'Deploy'+"${GENERATED_VERSION_NUMBER}",  status: 'SUCCESS', repo: 'declarative-pipeline-examples', credentialsId: 'New_Daher_token_full_2024', account: 'dadaher', sha: env.GIT_COMMIT
                                         // Use the GitHub Checks Plugin step to post a check to GitHub
                     // The exact syntax depends on the plugin's API

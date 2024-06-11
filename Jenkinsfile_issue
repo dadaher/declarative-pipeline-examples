@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    stages {
+        stage('Example Stage') {
+            steps {
+                echo 'This is an example stage.'
+                // Replace this with your actual build steps
+            }
+        }
+    }
+    post {
+        success {
+            script {
+                // Define the details of the issue to be created
+                def issueDetails = [
+                    title: "Build Successful",
+                    body: "The build for ${env.BUILD_ID} completed successfully.",
+                    labels: ["build", "success"]
+                ]
+
+                // Construct the URL for creating an issue in the GitHub repository
+                def apiUrl = "https://api.github.com/repos/dadaher/declarative-pipeline-examples/issues"
+
+                // Use the 'sh' step to execute a shell command that makes a POST request to the GitHub API
+                sh """
+                    curl -X POST '${apiUrl}' \
+                        -H 'Accept: application/vnd.github.v3+json' \
+                        -d '${issueDetails.toJSON()}'
+                """
+            }
+        }
+    }
+}

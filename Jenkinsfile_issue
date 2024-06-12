@@ -27,8 +27,8 @@ curl -L \
  sh '''
 curl -L \
   -X POST \
-  -H "Accept: application/vnd.github.v3+json" \
-  -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer ${GITHUB_TOKEN_PSW}" \
   https://api.github.com/repos/dadaher/declarative-pipeline-examples/issues \
   -d '{"title":"Found a bug","body":"Im having a problem with this.","assignees":["octocat"],"milestone":1,"labels":["bug"]}'
 '''

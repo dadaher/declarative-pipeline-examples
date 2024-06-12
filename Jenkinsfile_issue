@@ -8,15 +8,20 @@ pipeline {
             steps {
                 echo 'This is an example stage.'
                 // Replace this with your actual build steps
+script{
+withCredentials([string(credentialsId: ' JenkinsChecksNotifyApp', variable: 'GITHUB_APP_TOKEN')]) {
  sh '''
 curl -L \
   -X POST \
   -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer ${GITHUB_APP}" \
+  -H "Authorization: Bearer ${GITHUB_APP_TOKEN}" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/dadaher/declarative-pipeline-examples/issues \
   -d '{"title":"Found a bug2","body":"Im having a problem with this.","assignees":["dadaher"],"labels":["bug"]}'
 '''
+}
+
+}
             }
         }
         stage('Push issue try 2') {

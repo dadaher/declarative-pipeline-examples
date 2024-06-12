@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         GITHUB_TOKEN = credentials('fine-grained-token')
-        GITHUB_APP = credentials('JenkinsChecksNotifyApp')
     }
     stages {
         stage('Push try 1') {

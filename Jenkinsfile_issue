@@ -23,6 +23,7 @@ curl -L \
             steps {
                 echo 'This is an example stage.'
                 // Replace this with your actual build steps
+  echo "Bearer ${GITHUB_TOKEN}"
  sh '''
 curl -L \
   -X POST \

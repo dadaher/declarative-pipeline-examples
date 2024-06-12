@@ -35,7 +35,7 @@ curl -L \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer ${GITHUB_TOKEN_PSW}" \
   https://api.github.com/repos/dadaher/declarative-pipeline-examples/issues \
-  -d '{"title":"Found a bug3","body":"Im having a problem with this.","assignees":["dadaher"],"labels":["bug"]}'
+  -d '{"title":"Found a bug4","body":"Im having a problem with this.","assignees":["dadaher"],"project":"Test_kanban_project","labels":["bug"]}'
 '''
             }
         }

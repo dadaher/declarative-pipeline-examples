@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        GITHUB_TOKEN = credentials('New_Daher_token_full_2024')
+        GITHUB_TOKEN = credentials('fine-grained-token')
     }
     stages {
         stage('Push try 1') {

@@ -1,7 +1,10 @@
 pipeline {
     agent any
+    environment {
+        GITHUB_TOKEN = credentials('New_Daher_token_full_2024')
+    }
     stages {
-        stage('Example Stage') {
+        stage('Push try 1') {
             steps {
                 echo 'This is an example stage.'
                 // Replace this with your actual build steps
@@ -10,6 +13,21 @@ curl -L \
   -X POST \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer  JenkinsChecksNotifyApp" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/repos/dadaher/declarative-pipeline-examples/issues \
+  -d '{"title":"Found a bug","body":"Im having a problem with this.","assignees":["octocat"],"milestone":1,"labels":["bug"]}'
+'''
+            }
+        }
+        stage('Push issue try 2') {
+            steps {
+                echo 'This is an example stage.'
+                // Replace this with your actual build steps
+ sh '''
+curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: token ${GITHUB_TOKEN}" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/dadaher/declarative-pipeline-examples/issues \
   -d '{"title":"Found a bug","body":"Im having a problem with this.","assignees":["octocat"],"milestone":1,"labels":["bug"]}'

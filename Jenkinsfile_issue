@@ -14,7 +14,7 @@ pipeline {
                   -H "Accept: application/vnd.github+json" \
                   -H "Authorization: Bearer ${GITHUB_TOKEN_PSW}" \
                   https://api.github.com/repos/dadaher/declarative-pipeline-examples/issues \
-                  -d '{"title":"Found a bug5","body":"Found a problem with this.","assignees":["dadaher"],"projects":["Test_kanban_project"],"labels":["bug"]}'
+                  -d '{"title":"Found a bug5","body":"Found a problem with this.","assignees":["dadaher"],"projects":["Test_kanban_project"],"labels":["development"]}'
                 '''
             }
         }
